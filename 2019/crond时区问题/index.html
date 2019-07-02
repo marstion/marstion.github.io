@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>Tag: 问题解决 | 233.cool</title>
+  <title>crond时区问题. | 233.cool</title>
   
   
 
@@ -46,7 +46,7 @@
   
   
   <div class="cover-wrapper">
-    <cover class='cover  half'>
+    <cover class='cover post half'>
       
         
   <h1 class='title'>Material X</h1>
@@ -278,27 +278,12 @@
 
   <div class="l_body">
     <div class='body-wrapper'>
-      
-<div class='l_main'>
+      <div class='l_main'>
   
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
+
   
+    <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+      
 
 
   <section class='meta'>
@@ -307,11 +292,13 @@
     <div class="meta" id="header-meta">
       
         
-  <h2 class="title">
-    <a href="/2019/crond时区问题/">
-      crond时区问题.
-    </a>
-  </h2>
+  
+    <h1 class="title">
+      <a href="/2019/crond时区问题/">
+        crond时区问题.
+      </a>
+    </h1>
+  
 
 
       
@@ -350,6 +337,19 @@
         
           
             
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
 
           
         
@@ -366,154 +366,114 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>crond 计划任务无法按预期执行.</p>
-      
-        <div class="readmore">
-          <a href="/2019/crond时区问题/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          <p>crond 计划任务无法按预期执行.</p>
+<a id="more"></a>
+<p>问题描述:<br>在国外的一台小鸡开机后修改到utc+8时区(默认utc时区), 在上面运行了一个定时任务, 但是实际任务调度时间和设置的时间有些出入, 总是相差了8个小时.<br>问题排查: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@node-4 ~]# date</span><br><span class="line">Tue Jul  2 16:51:12 HKT 2019</span><br><span class="line">[root@node-4 ~]# hwclock  # 确认 系统时间 和 硬件时间 没问题</span><br><span class="line">Tue 02 Jul 2019 04:51:17 PM HKT  -0.641424 seconds</span><br></pre></td></tr></table></figure>
+
+<p>继续排查…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@node-4 ~]# ll  /etc/timezone</span><br><span class="line">ls: cannot access /etc/timezone: No such file or directory</span><br><span class="line">[root@node-4 ~]# echo &quot;Asia/Hong_Kong&quot; &gt; /etc/timezone  # 添加本机所属时区</span><br><span class="line">[root@node-4 ~]# systemctl restart crond</span><br></pre></td></tr></table></figure>
+
+<p>到此再次测试发现, 计划任务已经按预期正常执行了.  </p>
+<p>问题原因:<br><code>/etc/timezone</code> : 是用来描述本机时间.<br><code>/etc/localtime</code> : 是用来描述本机所属的时区.<br>参考: </p>
+<ul>
+<li><a href="http://luosiyong.lofter.com/post/1cc7f64b_6cc5cfc" target="_blank" rel="noopener">crontab时区以及linux时区设置</a>  </li>
+<li><a href="https://blog.csdn.net/alinyua/article/details/80944543" target="_blank" rel="noopener">Dockerfile 时区设置及 Java 时区设置/etc/localtime和/etc/timezone</a></li>
+</ul>
+
         </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/问题解决/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>问题解决</a>
-        
-          <a href="/tags/Linux/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Linux</a>
-        
-          <a href="/tags/crond/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>crond</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2019/Python-编译出错/">
-      Python 3.x 编译问题
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
         
           
-        
-          
-            
-  <div class='new-meta-item author'>
-    <a href="https://233.cool" rel="nofollow">
-      
-        <img src="https://api.diaosu.me:50443/files/avatar.png">
-      
-      <p>x1ong</p>
-    </a>
-  </div>
 
 
-          
+  <section class='meta' id="footer-meta">
+    <hr>
+    <div class='new-meta-box'>
+      
         
-          
-            <div class="new-meta-item date">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-07-02T17:14:24+08:00">
   <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-06-19</p>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>最后更新于 2019年7月2日</p>
   </a>
 </div>
 
-          
         
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/Python/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Python</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
       
-        <hr>
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/问题解决/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>问题解决</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Linux/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Linux</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/crond/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>crond</p></a></div>
+
+
+        
+      
+        
+          
+
+        
       
     </div>
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>Python 编译过程遇到的一些坑. </p>
-      
-        <div class="readmore">
-          <a href="/2019/Python-编译出错/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
         
-          <a href="/tags/Python/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Python</a>
         
-          <a href="/tags/问题解决/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>问题解决</a>
+            <div class="prev-next">
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/2019/Python-编译出错/" rel="prev" title="Python 3.x 编译问题">
+                                    
+                                        Python 3.x 编译问题
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Python/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Python</a> <a class="tag" href="/tags/问题解决/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>问题解决</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
         
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
-
+      </section>
+    </article>
   
 
-
-    
   
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'crond时区问题.',
+      tools: true
+    }
+  </script>
+
+
 </div>
 <aside class='l_side'>
   
